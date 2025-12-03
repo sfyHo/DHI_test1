@@ -1,5 +1,5 @@
 # 你的開心牧場
-<!DOCTYPE html>
+
 <html>
 <head>
   <meta charset="UTF-8" />
@@ -99,7 +99,7 @@
   <p id="scenario"></p>
 
   <div id="options"></div>
-  <p id="result"></p>
+  <p id="result"> style="font-size:24px;font-weight:bold;margin-top:10px;"> </p> 
   <p>目前收益：<span id="score">0</span> 萬 NTD</p>
 
   <p>目前飼養頭數：<span id="herdSize">0</span> 頭</p>
@@ -386,7 +386,7 @@ function showWrongAnswers() {
   const div = document.getElementById("wrongAnswersDiv");
   if (!div) return;
   if (wrongAnswers.length === 0) {
-    div.innerHTML = "<p>恭喜！沒有錯題。</p>";
+    div.innerHTML = "<p>恭喜沒有任何失誤！你是集幸運與睿智於一身之人。</p>";
     return;
   }
   let html = "<h3>❌ 錯題檢討表</h3><ol>";
