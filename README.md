@@ -395,7 +395,7 @@ function nextQuestion() {
 ------------------------------ */
 function endGame() {
   // 隱藏題目與操作，顯示結算
-  document.getElementById("scenario").innerText = "🎉 遊戲結束！";
+  document.getElementById("scenario").innerText = "🎉 遊戲結束！Enjoy what you earned！";
   document.getElementById("options").innerHTML = "";
   document.getElementById("loadingBox").style.display = "none";
   document.getElementById("result").innerText = "";
