@@ -538,5 +538,9 @@ scenarios.push(
 { text:"調整精粗比，增加有效粗纖維攝取", baseEffect:7, msg:"改善瘤胃穩定度並提高乳脂。", correct:true, reason:"低 P/F 可能有亞酸中毒風險" }
     ]
   }
+  )
+  
+  <div id="wrongAnswersDiv" style="margin-top:20px;"></div>
+
 </body>
 </html>
