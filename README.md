@@ -100,7 +100,7 @@
   <div id="options"></div>
   <p id="result"></p>
   <p>目前收益：<span id="score">0</span> 萬 NTD</p>
-  <p id="result"></p>
+
   <p>目前飼養頭數：<span id="herdSize">0</span> 頭</p>
   
   <div id="loadingBox">
