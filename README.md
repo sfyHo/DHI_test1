@@ -100,10 +100,11 @@
   <div id="options"></div>
   <p id="result"></p>
   <p>目前收益：<span id="score">0</span> 萬 NTD</p>
-
+<p id="result"></p>
+  <p>目前飼養頭數：<span id="herdSize">0</span> 頭</p>
+  
   <div id="loadingBox">
     <p>努力泌乳中...</p>
-    <img src="https://i.imgur.com/eMZ4B1y.png">
   </div>
 
   <button id="investBtn" onclick="invest()" class="hidden">投資（花費 40 萬，增加 10 頭牛）</button>
@@ -285,7 +286,7 @@ function choose(idx) {
     }
   }
 
-  // 小延遲後自動下一題或結束（3 秒）
+  // 小延遲後自動下一題或結束（2 秒）
   setTimeout(() => {
     current++;
     if (current >= scenarios.length) {
@@ -293,7 +294,7 @@ function choose(idx) {
     } else {
       loadQuestion();
     }
-  }, 3000);
+  }, 2000);
 }
 
 /* ------------------------------
