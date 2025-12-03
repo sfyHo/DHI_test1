@@ -1,5 +1,5 @@
 # 你的開心牧場
-html_code = """<!DOCTYPE html>
+
 <html>
 <head>
   <meta charset="UTF-8" />
