@@ -99,7 +99,7 @@
   <p id="scenario"></p>
 
   <div id="options"></div>
-  <p id="result"> style="font-size:24px;font-weight:bold;margin-top:10px;"> </p> 
+  <p id="result"> </p> 
   <p>目前收益：<span id="score">0</span> 萬 NTD</p>
 
   <p>目前飼養頭數：<span id="herdSize">0</span> 頭</p>
