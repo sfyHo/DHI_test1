@@ -769,39 +769,62 @@ description: "乳量 31 kg，乳脂率 4.0%，乳蛋白率 3.9%，近日常精�
 
 <script>
 // --------------------------------------------------------
-// 覆寫 choose()，讓前 6 題不會自動跳題，也不會進入第 7 題
+// 最終版：完全阻止前 6 題自動跳題 + 第 6 題停住
 // --------------------------------------------------------
 
-const originalChoose = choose;
 let firstSummaryDone = false;
+let allowAutoNext = true;
+
+// 攔截原本的 choose()
+const originalChoose = choose;
 
 choose = function(idx) {
-  // 執行原本邏輯（算分、顯示結果、錯題紀錄）
-  originalChoose(idx);
-
-  // 如果前 6 題尚未做完，阻止自動下一題
-  if (!firstSummaryDone && current === 6) {
-    showFirstSummary();
+  // 若目前仍在前 6 題，禁用 auto-next
+  if (current < 6) {
+    allowAutoNext = false;
   }
+
+  originalChoose(idx);
+};
+// --------------------------------------------------------
+// 攔截原本 auto-next（3.5 秒）
+// --------------------------------------------------------
+const originalSetTimeout = window.setTimeout;
+window.setTimeout = function(fn, delay) {
+  // 專門阻擋 choose() 裡的 auto next（它的 delay 是 3500）
+  if (delay === 3500 && !allowAutoNext) {
+    // 完全不執行 auto-next
+    return;
+  }
+  return originalSetTimeout(fn, delay);
 };
 
+// --------------------------------------------------------
+// 第 6 題跳小結
+// --------------------------------------------------------
+const originalLoadQuestion = loadQuestion;
+loadQuestion = function() {
+  // 若已經做完第 6 題（current == 6），顯示小結
+  if (!firstSummaryDone && current === 6) {
+    showFirstSummary();
+    return;
+  }
+  originalLoadQuestion();
+};
 
 // --------------------------------------------------------
-// 第一次結算畫面
+// 小結畫面
 // --------------------------------------------------------
 function showFirstSummary() {
   firstSummaryDone = true;
 
-  // 停掉原本 choose() 裡的 auto-next（5 秒跳題）
-  // 方法：把 current 固定住不讓它往下跑
-  current = 6;
+  // 停止 auto-next
+  allowAutoNext = false;
 
-  // 隱藏題目區
   document.getElementById("scenario").innerText = "📊 第一次結算（前 6 題）";
   document.getElementById("options").innerHTML = "";
   document.getElementById("loadingBox").style.display = "none";
 
-  // 顯示簡單結算
   const sb = document.getElementById("summaryBox");
   sb.classList.remove("hidden");
   sb.innerHTML = `
@@ -812,28 +835,25 @@ function showFirstSummary() {
     <button id="continueBtn" style="display:none;margin-top:15px;">繼續經營 ➜</button>
   `;
 
-  // 10 秒後出現按鈕
   setTimeout(() => {
     const btn = document.getElementById("continueBtn");
     btn.style.display = "block";
     btn.onclick = continueAfterSummary;
   }, 10000);
 }
-
-
 // --------------------------------------------------------
-// 點「繼續經營」 → 手動跳入第 7 題（index = 6 → 7）
+// 小結 → 第 7 題
 // --------------------------------------------------------
 function continueAfterSummary() {
   document.getElementById("summaryBox").classList.add("hidden");
 
-  current = 6;     // 確保現在停在第 6 題
-  current++;       // 手動跳到第 7 題
-
+  // 開放 auto-next
+  allowAutoNext = true;
+  current = 6;  // 保險起見
+  current++;    // 到第 7 題
   loadQuestion();
 }
 </script>
-
 
 </body>
 </html>
