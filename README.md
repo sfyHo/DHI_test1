@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>DHI 飼養管理小遊戲 v2</title>
+  <title>DHI 飼養管理小遊戲 </title>
   <style>
     body { font-family: Arial, "Noto Sans TC", sans-serif; padding: 20px; background:#fffef6; color:#222; }
     button { padding: 8px 12px; margin:6px; cursor:pointer; }
