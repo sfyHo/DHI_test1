@@ -287,7 +287,7 @@ function choose(idx) {
     }
   }
 
-  // 小延遲後自動下一題或結束（5 秒）
+  // 小延遲後自動下一題或結束（3.5 秒）
   setTimeout(() => {
     current++;
     if (current >= scenarios.length) {
@@ -295,7 +295,7 @@ function choose(idx) {
     } else {
       loadQuestion();
     }
-  }, 5000);
+  }, 3500);
 }
 
 /* ------------------------------
