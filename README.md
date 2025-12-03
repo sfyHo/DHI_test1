@@ -771,7 +771,7 @@ description: "乳量 31 kg，乳脂率 4.0%，乳蛋白率 3.9%，近日常精�
 // 前 6 題後的第一次結算流程模組
 // -----------------------------
 
-// 在 choose() 自動跳題之前攔截
+
 <script>
 
 const originalChoose = choose;
