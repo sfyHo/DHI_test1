@@ -225,13 +225,24 @@ function chooseWithEffect(idx) {
    baseEffect 單位：萬 NTD
 ------------------------------ */
 function calculateEffectiveGain(baseEffect) {
-	 // (A) 收益越高，提升難度（使用絕對值以避免 score 為負時奇怪行為）
-  const diminishing = 100 / (100 + Math.abs(score) + 0.0001);
-	 // (B) herdSize 變動幅度對應收益比率
+  // (A) 收益越高 → 遞減收益係數（避免後期暴衝）
+  const diminishing = 100 / (100 + Math.abs(score) + 0.0001)
+  // (B) 飼養頭數對應收益
   const scale = Math.pow(herdSize / 60, 0.75); 
-  const eff = baseEffect *3* diminishing * scale;
+  // 先套用 3 倍倍率與 herd scaling
+  let eff = baseEffect * 3 * scale;
+  // 正負分使用不同 diminishing
+  if (eff > 0) {
+    // 答對 → 用原本 diminishing（增益後期下降）
+    eff *= diminishing;
+  } else {
+    // 答錯 → 用弱化版 diminishing（扣分變大但不失控）
+    const softDim = Math.sqrt(diminishing); 
+    eff *= softDim;
+  }
   return Math.round(eff);
 }
+
 /* ------------------------------
    投資擴張（與 UI 綁定）
 ------------------------------ */
