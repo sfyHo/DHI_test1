@@ -225,14 +225,13 @@ function chooseWithEffect(idx) {
    baseEffect 單位：萬 NTD
 ------------------------------ */
 function calculateEffectiveGain(baseEffect) {
-  // (A) 收益越高，提升難度（使用絕對值以避免 score 為負時奇怪行為）
+	 // (A) 收益越高，提升難度（使用絕對值以避免 score 為負時奇怪行為）
   const diminishing = 100 / (100 + Math.abs(score) + 0.0001);
-  // (B) herdSize 對變動幅度的放大（以 30 頭為基準）
-  const scale = herdSize / 30;
-  const eff = baseEffect * diminishing * scale;
-  return Math.round(eff); // 回傳整數（萬 NTD）
+	 // (B) herdSize 變動幅度對應收益比率
+  const scale = Math.pow(herdSize / 60, 0.75); 
+  const eff = baseEffect *2* diminishing * scale;
+  return Math.round(eff);
 }
-
 /* ------------------------------
    投資擴張（與 UI 綁定）
 ------------------------------ */
