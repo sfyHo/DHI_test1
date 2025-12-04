@@ -424,7 +424,7 @@ function showWrongAnswers() {
    每題 options 含 baseEffect（萬 NTD 單位）、msg、correct、reason
 ------------------------------ */
 const scenarios = [
-  { description: "乳量下降 10%，體細胞上升至 380k。",
+  { description: "乳量下降 10%，體細胞上升至 38萬/mL。",
     options:[
 { text:"提高精料比例以刺激乳量", baseEffect:-5, msg:"短期可能增加但增加疾病風險。", correct:false, reason:"精料過高會增加瘤胃酸中毒與健康風險" },
 { text:"減少擠乳次數以讓乳房休息", baseEffect:-6, msg:"可能導致脹奶、細菌滋生。", correct:false, reason:"減少擠乳會增加乳房感染與產量下降風險" },
