@@ -443,7 +443,7 @@ const scenarios = [
   { description: "全場平均乳量 24 kg，牛群食慾下降。",
     options:[
 { text:"立即提高精料比例大量補能", baseEffect:-5, msg:"短期可能增加但風險較高。", correct:false, reason:"盲目提高精料可能造成瘤胃問題" },
-{ text:"減少牛群活動量以省能量", baseEffect:-2, msg:"非根本解決方案。", correct:false, reason:"減少活動不會恢復食慾" },
+{ text:"減少牛群活動量以節省能量", baseEffect:-2, msg:"非根本解決方案。", correct:false, reason:"減少活動不會恢復食慾" },
 { text:"檢查環境溫度、通風與飲水系統是否有問題", baseEffect:8, msg:"發現熱緊迫/飲水問題並改善，DMI 回升。", correct:true, reason:"熱緊迫與飲水問題常導致食慾下降" }
     ]
   },
@@ -491,26 +491,27 @@ const scenarios = [
   },
   { description: "乳蛋白率 2.9%，乳量 30 kg，乳脂正常。",
     options:[
-     { text:"減少糧食供給以提高乳蛋白濃度", baseEffect:-4, msg:"會降低產量。", correct:false, reason:"減少供給非良策" },
+     { text:"適度減少糧食供給以提高乳蛋白濃度", baseEffect:-4, msg:"會降低產量。", correct:false, reason:"減少供給非良策" },
 { text:"評估蛋白來源與MUN，補充蛋白質或調整胺基酸平衡", baseEffect:7, msg:"改善蛋白率且非犧牲產量。", correct:true, reason:"MUN與蛋白率相關，需調整配方" },
       { text:"全場休息擠乳一日以測試數據，等泌乳牛累積足夠乳蛋白再行搾乳", baseEffect:-2, msg:"無幫助且忽略脹乳的緊迫。", correct:false, reason:"不建議" }
     ]
   }
   ];
+
 //追加題庫：
 scenarios.push(
   { description: "乳蛋白率 4.1%，乳量 30 kg，牛群步態怪異。",
     options:[
       { text:"檢查蹄部健康、牛床與通道防滑性", baseEffect:8, msg:"改善步態並降低受傷風險。", correct:true, reason:"高蛋白+步態異常可能與代謝或蹄病相關" },
       { text:"增加精料追求更高乳蛋白", baseEffect:-5, msg:"可能加劇代謝負擔，導致炎症加劇。", correct:false, reason:"蛋白已高，再追高會增加身體負擔" },
-      { text:"維持營養配方，但盡量減少擠乳次數讓牛休息", baseEffect:-3, msg:"休息非主要措施，可能的高蛋白飼糧問題也會讓牛隻持續緊迫。", correct:false, reason:"步態問題非擠乳次數造成" }
+      { text:"維持營養配方，但盡量減少擠乳次數讓牛休息", baseEffect:-3, msg:"休息非主要措施，可能的高蛋白飼糧問題也可能讓牛隻持續緊迫。", correct:false, reason:"步態問題不是擠乳次數造成" }
     ]
   },
 
   { description: "多數牛為泌乳初期，場均乳脂率2.9%，乳量 28 kg，體態偏瘦。",
     options:[
       { text:"增加飼糧能量濃度", baseEffect:9, msg:"改善負能量平衡並提升乳脂。", correct:true, reason:"泌乳初期乳脂低+瘦常表示能量不足" },
-      { text:"減少乾草比例，增加適口性高的精料比例", baseEffect:-4, msg:"會影響瘤胃健康。", correct:false, reason:"纖維不足更降低乳脂" },
+      { text:"大量減少乾草餵飼比例，增加適口性高的精料比例", baseEffect:-4, msg:"會影響瘤胃健康。", correct:false, reason:"纖維不足更降低乳脂，且有瘤胃酸化危機" },
       { text:"讓牛多休息、不調整飼料，注意飲水清潔", baseEffect:-2, msg:"不足以改善問題。", correct:false, reason:"需調整日糧" }
     ]
   },
@@ -537,10 +538,102 @@ scenarios.push(
       { text:"維持目前管理策略，定期觀察牛隻飲食精神狀態", baseEffect:-2, msg:"風險持續存在。", correct:false, reason:"需調整飼糧" },
 { text:"調整精粗比，增加有效粗纖維攝取", baseEffect:7, msg:"改善瘤胃穩定度並提高乳脂。", correct:true, reason:"低 P/F 可能有亞酸中毒風險" }
     ]
+  },
+
+  { description: "乳糖 5.1%，乳量 32 kg，有些牛出現輕微便秘跡象。",
+    options:[
+      { text:"提高精料以稀釋乳糖", baseEffect:-5, msg:"完全無效。", correct:false, reason:"乳糖偏高多數是脫水問題" },
+      { text:"減少乾草以降低水分需求", baseEffect:-3, msg:"錯誤且有害。", correct:false, reason:"乾草與乳糖無直接關聯" },
+{ text:"檢查飲水設備、增加水槽並改善補水速度", baseEffect:9, msg:"改善脫水並維持產量。", correct:true, reason:"飲水不足會使乳糖偏高" }
+    ]
+  },
+  { description: "MUN 9 mg/dL，乳蛋白率 2.9%，乳量 32kg。",
+    options:[
+      { text:"減少精料，避免瘤胃酸中毒", baseEffect:-4, msg:"會使蛋白更低。", correct:false, reason:"需增加蛋白而非減少" },
+	{ text:"增加過瘤胃蛋白比例或調整胺基酸平衡", baseEffect:7, msg:"改善蛋白代謝。", correct:true, reason:"低 MUN + 低蛋白常為蛋白不足" },
+      { text:"增加水分攝取以稀釋 MUN", baseEffect:-2, msg:"無關。", correct:false, reason:"MUN 與水量無直接關聯" }
+    ]
+  },
+
+  { description: "乳蛋白率 2.8%，MUN 21 mg/dL，乳量 28 kg，最近剛調整過精料比例。",
+    options:[
+      { text:"檢查是否精料過量或蛋白性質不宜，適度提高過瘤胃蛋白比例", baseEffect:8, msg:"改善瘤胃分解蛋白產生氨，降低MUN。", correct:true, reason:"高 MUN 可能與精料或蛋白相關" },
+      { text:"提高非蛋白氮比例以平衡 MUN", baseEffect:-4, msg:"會更糟。", correct:false, reason:" 非蛋白氮（比如尿素）會增加 MUN" },
+      { text:"減少飲水，以濃縮乳蛋白率", baseEffect:-5, msg:"完全無效。", correct:false, reason:"與 MUN 無直接關聯" }
+    ]
+  },
+  { description: "檸檬酸 105 mg/dL，乳脂率 2.9%，乳量 29 kg，牛群常臥地喘氣。",
+    options:[
+      { text:"精料與芻料同時提高以補足能量與乳脂來源", baseEffect:-4, msg:"忽視熱緊迫問題。", correct:false, reason:"能量過剩、無效餵與飼糧+熱緊迫反而更危險" },
+      { text:"減少活動空間以分散熱源，配合乳固形物數值調整飼養策略", baseEffect:-2, msg:" 減少活動空間反而可能阻礙散熱，乳固形物數值也通常相對較不直接顯示代謝問題。", correct:false, reason:"主要是通風與飲水問題" },
+{ text:"改善通風、水霧/灑水系統，配合SCC與P/F值調整飼養策略", baseEffect:8, msg:"降低熱緊迫並改善乳脂。", correct:true, reason:"熱緊迫造成低 DMI 與乳脂" }
+    ]
+  },
+  { description: "檸檬酸 210 mg/dL，乳脂率 4.0%，乳量 40 kg。",
+    options:[
+      { text:"適度補充能量避免過度負能量，並提升水分供應", baseEffect:7, msg:"維持高產穩定性。", correct:true, reason:"泌乳初期高產伴隨高 citric acid" },
+      { text:"加強監測，針對乳房炎高危險群進行檢測、隔離或治療", baseEffect:-4, msg:"與DHI顯示之問題較無直接關係。", correct:false, reason:" 高檸檬酸通常非與乳房炎相關" },
+      { text:"減少粗料以提升採食速度，間接增加採食量", baseEffect:-5, msg:"瘤胃風險上升。", correct:false, reason:"粗料不能減" }
+    ]
+  },
+
+  { description: "場均游離脂肪酸 2.0 mmol/100g，乳量 27 kg，乳蛋白率4.0%。",
+    options:[
+{ text:"泌乳牛全體施用預防性抗生素，鞏固牛群防疫", baseEffect:-3, msg:"無助且可能有害。", correct:false, reason:"不能直接由FFA、乳蛋白確定牛隻患有乳房炎" },
+{ text:"確認SCC檢測結果，同步檢查儲乳設備與生乳運送冷鏈系統 ", baseEffect:8, msg:"降低脂肪酸指標。", correct:true, reason:" FFA可能與設備有關，加上高乳蛋白有機率與乳房炎相關" },
+      { text:"提高精料、確認飲水充足以降低 FFA", baseEffect:-4, msg:"反效果。", correct:false, reason:"高精料會升高 FFA" }
+    ]
+  },
+{ description: "MUN 20 mg/dL，乳蛋白率 4.3%，乳量 25 kg，受孕率降低。",
+    options:[
+      { text:" 增加非蛋白氮，或額外蛋白補充以嘗試維持目前高乳蛋白率", baseEffect:-4, msg:"可能惡化問題。", correct:false, reason:"精料過量造成 MUN 升高" },
+{ text:" 在不增加蛋白攝取總量的前提下，降低瘤胃可分解蛋白比例", baseEffect:9, msg:"改善 MUN 與繁殖。", correct:true, reason:"高 MUN 與繁殖下降有關" },
+      { text:"停止補充精料，以芻料為主要飼糧", baseEffect:-3, msg:"不合理。", correct:false, reason:"需調整不是停止" }
+    ]
+  },
+  { description: "場均乳量26 kg，乳蛋白率 3.2%，乳脂率 4.5%，乳糖 4.7%。",
+    options:[
+      { text:"提高精料，增加容易吸收的蛋白質攝取以改善P/F值", baseEffect:-4, msg:"缺乏纖維的狀況可能會更嚴重。", correct:false, reason:"精料過高降低乳脂與健康" },
+	{ text:"提升乾草有效纖維量，並確認TMR混合的均勻狀況", baseEffect:8, msg:"改善瘤胃狀態。", correct:true, reason:"低P/F可能來自低纖維或挑食" },
+      { text:"增加飲水，並加強人員搾乳操作衛生", baseEffect:-3, msg:"無直接效益，可能忽略營養代謝問題。", correct:false, reason:"主因應非飲水或疾病" }
+    ]
+  },
+
+  {description: "乳量 30 kg，乳蛋白率4.0%， 乳脂率3.9%，近日牛群易眼神渙散呆滯。",
+    options:[
+      { text:"進行代謝疾病、蹄病與環境壓力評估", baseEffect:9,
+        msg:"找出健康問題，改善後恢復精神。", correct:true,
+        reason:"高產+精神差可能與臨床疾病相關，或者是缺乏能量" },
+      { text:"提高場內通風效果，改善精神食欲 ", baseEffect:-5, msg:"可能無法改善疾病或營養問題。", correct:false,
+        reason:"不能斷定為純粹的熱緊迫問題，對於改善降低P/F無幫助" },
+      { text:"減少芻料餵與量，尤其是含水量較高的鮮草，以提升粗纖維攝取量", baseEffect:-4, msg:"於改善P/F無益，問題持續或惡化。", correct:false,
+        reason:"若問題是缺乏能量，單純增加芻料沒有直接幫助" }
+    ]
+  },
+  { description: "檸檬酸 100 mg/dL，P/F=1.04，乳量 29 kg，場內氨味稍濃、比平常更潮濕。",
+    options:[
+      { text:"提高精料，以提升乳脂合成所需的能量", baseEffect:-4, msg:"可能惡化狀況。", correct:false, reason:"熱緊迫非精料問題" },
+	{ text:"檢查是否熱緊迫、灑水與通風設備，並確保日糧能量充足", baseEffect:8, msg:"改善後乳脂可能回升。", correct:true, reason:"熱緊迫與能量不足均可能造成飲水上升，排尿增加" },
+      { text:"限制飲水並增加精料餵與量，以改善場內潮濕、乳量低等問題", baseEffect:-6, msg:"錯誤且危險。", correct:false, reason:"飲水不能限制" }
+    ]
+  },
+  { description: "游離脂肪酸 2.2 mmol/100g，乳量 24 kg，SCC 31萬/mL。",
+    options:[
+      
+      { text:"增加精料，彌補乳量下降", baseEffect:-4, msg:"無助。", correct:false, reason:"不是能量問題" },
+      { text:"減少精料，避免瘤胃酸中毒", baseEffect:-3, msg:"未解決根本問題。", correct:false, reason:"FFA、SCC多半與營養無直接關係" },
+{ text:"確認搾乳設備與牛床清潔", baseEffect:9, msg:"改善乳品質。", correct:true, reason:"FFA、SCC與設備衛生高度相關" },
+    ]
+  },
+  { description: "BHB 130μmol/L，乳量 25 kg，乳脂率 3.2%，牛群體況偏瘦。",
+    options:[
+      { text:"減少精料給與，避免瘤胃鼓脹惡化", baseEffect:-6, msg:"能量缺乏狀況更糟。", correct:false, reason:"需要提升能量" },
+      { text:"改善飲水供應，飼糧中提高大豆粕及魚粉比例", baseEffect:-3, msg:" 蛋白質補充無益於改善酮症。", correct:false, reason:"蛋白質補充無益於改善酮症" },
+{ text:"增加能量供應，嘗試添加啤酒酵母", baseEffect:8, msg:"改善能量平衡。", correct:true, reason:"高 BHB 多為能量不足，啤酒酵母提升飼糧適口性" }
+    ]
   }
-  )
-  
-  </script>
+);
+</script>
   
   <div id="wrongAnswersDiv" style="margin-top:20px;"></div>
   
